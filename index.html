@@ -2,11 +2,536 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>manpowerphilippines.harmonixhr.com</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-border workforce solutions | HarmoniXHR and Manpower (Philippines)</title>
+<meta name="description" content="Cross-border workforce solutions for employers. Skilled people recruited, prepared and placed internationally under lawful land-based deployment, through HarmoniXHR and Manpower (Philippines).">
+<meta name="robots" content="noindex,nofollow">
+
+<!-- ==========================================================================
+     manpowerphilippines.harmonixhr.com
+     Co-branded landing page, HarmoniXHR and Manpower (Philippines).
+     Build 2026-09-01. Draft.
+
+     Standalone. Does NOT load the hxhr-base WordPress theme. Structure,
+     type scale and section rhythm are inherited from
+     harmonixhr.com/workforce-deployment/ and reproduced here rather than
+     imported, because GitHub Pages serves this page on its own.
+
+     Deliberate divergences from the source page, each decided rather than
+     inherited:
+       1. Accent is plum #8B2E6B, not rust. Measured 33 degrees minimum hue
+          separation from every colour in the Manpower mark, and clear of
+          rust, blue, green, teal and purple already in use across the
+          HXHR verticals. Contrast on white 7.78, AA.
+       2. .btn-primary is NOT used. On the live source it resolves to green
+          #2E7A33 and ships green buttons on a rust page. That defect is not
+          inherited here; primary CTAs use the page accent.
+       3. The footer disclaimer "not quotations or offers of coverage" is
+          benefits language and does not appear on this page.
+       4. Advisor names are h3, not <p class="who">. On the source they are
+          invisible to the heading outline.
+
+     STILL TO DO, tracked:
+       - Intake form. Endpoint is a placeholder. GoHighLevel embed goes in
+         the block marked FORM ENDPOINT below. One edit, nothing else moves.
+       - Manpower logo. Currently their published horizontal SVG. Swap the
+         value of --mp-logo in the LOGO ASSET block below when the supplied
+         asset arrives. The files supplied 2026-08-15 are JPEG on solid
+         black and stacked 1:1, so they cannot sit in a white header at
+         equal height beside a 3.3:1 horizontal mark.
+       - Access phrase. Set ACCESS_PHRASE in the gate script after deploy.
+         Never commit the real value. Registry entry 164.
+
+     Access control here is in the page and is not a security boundary.
+     Registry entry 178: anything committed to a public repository is
+     fetchable at its path regardless of what the gate shows.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ---------------------------------------------------------------- tokens
+ * Mirrors base.css v1.16.3 so the page reads as part of the family, with
+ * one addition: the plum accent, which does not exist in the shared theme
+ * because this page does not run inside it.
+ */
+:root{
+  --blue:#0B66F3; --blue-dark:#0A50C0;
+  --navy:#062B5D; --navy-deep:#04203F;
+
+  /* page accent */
+  --plum:#8B2E6B; --plum-dark:#7A2A5E; --plum-tint:#F8EFF5; --plum-line:#EBD4E3;
+
+  /* amber stays reserved for cautions and against-the-argument tags */
+  --amber:#B45309; --amber-tint:#FEF6EC; --amber-line:#F0D9B8;
+
+  --ink:#12233D; --ink-mid:#4A5B72; --ink-soft:#5C6D82;
+  --rule:#E2E9F1; --tint:#F5F8FC;
+
+  --wrap:1180px; --pad:24px;
+  --shadow:0 1px 2px rgba(6,43,93,.06), 0 10px 30px rgba(6,43,93,.08);
+  --shadow-lift:0 2px 6px rgba(6,43,93,.1), 0 22px 54px rgba(6,43,93,.16);
+
+  --d1:clamp(33px,4.3vw,54px);
+  --d2:clamp(26px,3.1vw,38px);
+  --d3:23px; --d4:18px; --tx:16px; --sm:14px; --xs:12px;
+  --w-body:400; --w-mid:600; --w-hi:800;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+*{min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto}
+
+h1{font-size:var(--d1);font-weight:var(--w-hi);line-height:1.08;letter-spacing:-.02em;margin:0}
+h2{font-size:var(--d2);font-weight:var(--w-hi);line-height:1.14;letter-spacing:-.015em;margin:0}
+h3{font-size:var(--d3);font-weight:var(--w-mid);line-height:1.25;margin:0}
+h4{font-size:var(--d4);font-weight:var(--w-mid);line-height:1.3;margin:0}
+p,li,label,input,textarea,button,a{font-size:var(--tx);line-height:1.65}
+p{margin:0}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad)}
+.sec{padding:84px 0}
+.sec-head{margin-bottom:44px}
+.eyebrow{font:var(--w-mid) var(--xs)/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft)}
+.lede{font-size:var(--d4);line-height:1.65;color:var(--ink-mid)}
+.sec-head .lede{margin-top:16px}
+.tint-band{background:var(--tint);border-block:1px solid var(--rule)}
+.dark-band{background:var(--navy-deep);color:#fff}
+.dark-band h2{color:#fff}
+.dark-band p{color:#B9CBE4}
+.sm{font-size:var(--sm);line-height:1.6;color:var(--ink-soft)}
+
+/* --------------------------------------------------------------- buttons
+ * .btn-primary is deliberately absent. See header comment, divergence 2.
+ */
+.btn{display:inline-flex;align-items:center;gap:9px;font:var(--w-mid) var(--tx)/1 var(--sans);padding:16px 26px;border-radius:11px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.btn-accent{background:var(--plum);color:#fff}
+.btn-accent:hover{background:var(--plum-dark)}
+.btn-ghost{background:#fff;color:var(--plum);border-color:var(--plum-line)}
+.btn-ghost:hover{border-color:var(--plum)}
+.dark-band .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
+.dark-band .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.10)}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+@media(max-width:620px){.btn{width:100%;justify-content:center}}
+
+/* ---------------------------------------------------------- co-brand lock
+ * Equal billing: same rendered height, side by side, neither above the
+ * other. Both marks are height-constrained and width-auto, so the rule is
+ * checkable in CSS rather than judged by eye. "(Philippines)" sits under
+ * the pair, not under one mark, so the row stays a single horizontal unit.
+ */
+.cobrand{display:flex;flex-direction:column;gap:6px}
+.cobrand-row{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
+.cobrand-row img{height:54px;width:auto;display:block}
+.cobrand-rule{width:1px;align-self:stretch;background:var(--rule);flex:0 0 1px}
+.cobrand-note{font-size:var(--xs);color:var(--ink-soft);letter-spacing:.04em}
+@media(max-width:1000px){
+  .cobrand-row{gap:16px}
+  .cobrand-row img{height:42px}
+}
+@media(max-width:520px){
+  .cobrand-row{gap:12px}
+  .cobrand-row img{height:34px}
+}
+
+/* ---------------------------------------------------------------- header */
+header.site-header{position:sticky;top:0;z-index:800;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule)}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:92px;padding-block:14px;flex-wrap:wrap}
+.header-cta{display:inline-flex;align-items:center;background:var(--plum);color:#fff;text-decoration:none;font:var(--w-mid) var(--tx)/1 var(--sans);padding:13px 20px;border-radius:10px;white-space:nowrap}
+.header-cta:hover{background:var(--plum-dark)}
+@media(max-width:1000px){.header-row{min-height:76px}}
+
+/* ------------------------------------------------------------------ hero */
+.hero{background:linear-gradient(158deg,var(--plum-tint) 0%,#FDF7FA 48%,#FFFFFF 100%);padding:70px 0 76px}
+.hgrid{display:grid;grid-template-columns:1.06fr .94fr;gap:50px;align-items:center}
+.hero h1{margin-top:14px}
+.hero .lede{margin-top:20px;max-width:58ch}
+.hero img.shot{width:100%;border-radius:18px;box-shadow:var(--shadow-lift);display:block}
+.hero-note{margin-top:16px;font-size:var(--sm);color:var(--ink-soft)}
+
+/* --------------------------------------------------------------- sectors */
+.sectors{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px}
+.sc{background:#fff;border:1px solid var(--rule);border-radius:13px;padding:22px 24px;box-shadow:var(--shadow)}
+.sc h3{font-size:var(--d4);font-weight:var(--w-mid);margin-bottom:8px}
+.sc p{font-size:var(--sm);line-height:1.6;color:var(--ink-mid)}
+.lead{margin-top:26px;padding:22px 26px;background:var(--plum-tint);border:1px solid var(--plum-line);border-radius:14px}
+.lead p{font-size:var(--tx);line-height:1.65;color:var(--ink-mid)}
+.lead b{color:var(--plum-dark)}
+
+/* ------------------------------------------------------- disambiguation */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.tw{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow)}
+.tw.here{border-color:var(--plum-line);background:var(--plum-tint)}
+.tw .kicker{font:var(--w-mid) var(--xs)/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+.tw.here .kicker{color:var(--plum-dark)}
+.tw h3{font-size:var(--d4);font-weight:var(--w-mid);margin-bottom:12px}
+.tw p{font-size:var(--tx);line-height:1.62;color:var(--ink-mid)}
+.tw a{color:var(--plum);font-weight:var(--w-mid);text-decoration:none;display:inline-block;margin-top:14px}
+.tw a:hover{text-decoration:underline}
+
+/* ---------------------------------------------------------------- ethics */
+.ethics{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--amber);border-radius:0 16px 16px 0;padding:32px 36px;margin-top:8px}
+.ethics h3{font-size:var(--d3);font-weight:var(--w-hi);margin-bottom:14px}
+.ethics p{font-size:var(--tx);line-height:1.7;color:var(--ink-mid);margin-bottom:16px}
+.ethics p:last-child{margin-bottom:0}
+.ethics b{color:var(--ink)}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.fg{background:var(--tint);border:1px solid var(--rule);border-radius:14px;padding:24px 22px}
+.fg.against{background:var(--amber-tint);border-color:var(--amber-line)}
+.fg .n{font:var(--w-hi) var(--d3)/1 var(--sans);color:var(--navy);letter-spacing:-.02em}
+.fg.against .n{color:var(--amber)}
+.fg .l{margin-top:11px;font-size:var(--sm);line-height:1.5;color:var(--ink-mid)}
+.fg .src{margin-top:10px;font-size:var(--xs);color:var(--ink-soft);line-height:1.45}
+
+
+/* --------------------------------------------------------------- process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.st{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:24px 22px}
+.st .n{width:32px;height:32px;border-radius:8px;background:var(--plum-tint);border:1px solid var(--plum-line);color:var(--plum-dark);font:var(--w-hi) var(--tx)/30px var(--sans);text-align:center;margin-bottom:14px}
+.st h3{font-size:var(--tx);font-weight:var(--w-mid);margin-bottom:8px}
+.st p{font-size:var(--sm);line-height:1.55;color:var(--ink-mid)}
+.have{display:grid;gap:12px;margin-top:26px}
+.hv{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 22px}
+.hv b{color:var(--plum-dark);font-size:var(--tx);white-space:nowrap}
+.hv span{font-size:var(--sm);line-height:1.6;color:var(--ink-mid)}
+
+/* --------------------------------------------------------- qualification */
+.qs{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:32px 34px;box-shadow:var(--shadow);margin-top:30px}
+.qs h3{font-size:var(--d4);font-weight:var(--w-mid);margin-bottom:8px}
+.qs .sub{font-size:var(--tx);line-height:1.6;color:var(--ink-mid);margin-bottom:24px}
+.qlist{display:grid;margin:0;padding:0;list-style:none}
+.qlist li{display:grid;grid-template-columns:30px 1fr;gap:16px;padding:15px 0;border-top:1px solid var(--rule);font-size:var(--tx);line-height:1.55;color:var(--ink)}
+.qlist li:first-child{border-top:0}
+.qlist .qn{font:var(--w-mid) var(--xs)/1.5 var(--sans);color:var(--plum)}
+.qlist .why{display:block;font-size:var(--sm);color:var(--ink-soft);margin-top:5px;line-height:1.5}
+
+/* ------------------------------------------------------------- form slot */
+.formslot{margin-top:30px;padding:32px 34px;background:#fff;border:1px dashed var(--plum-line);border-radius:16px}
+.formslot .ph{font-size:var(--sm);line-height:1.6;color:var(--ink-soft)}
+
+/* ------------------------------------------------------------------- CTA */
+.cta{text-align:center}
+.cta p{margin:18px auto 0;max-width:60ch;font-size:var(--d4);line-height:1.65}
+.cta .btn-row{justify-content:center}
+
+/* ---------------------------------------------------------------- footer */
+footer.site-footer{background:var(--navy-deep);color:#C7D5E8}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;padding:56px 0 40px;align-items:start}
+.foot-brand img{height:44px;width:auto;display:block;margin-bottom:16px}
+.foot-brand p{font-size:var(--sm);line-height:1.65;color:#9FB4CE;max-width:38ch}
+.foot-col h3{font:var(--w-mid) var(--xs)/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#fff;margin:0 0 14px}
+.foot-col ul{list-style:none;margin:0;padding:0}
+.foot-col li{margin-bottom:9px}
+.foot-col a{color:#C7D5E8;text-decoration:none;font-size:var(--sm)}
+.foot-col a:hover{color:#fff;text-decoration:underline}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px 0 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:var(--sm);color:#8FA6C2}
+
+/* ------------------------------------------------------------ the gate
+ * Same pattern as georgia.purplejamm.com. Controlled in the page, not a
+ * security boundary, and the card says so.
+ */
+#gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#3D1430 0%,#5A1F47 55%,#3D1430 100%);padding:24px}
+#gate .card{background:#fff;border-radius:16px;box-shadow:var(--shadow-lift);padding:34px 36px;max-width:420px;width:100%}
+#gate h1{font-size:var(--d3);font-weight:var(--w-hi);margin-bottom:6px}
+#gate .kick{font:var(--w-mid) var(--xs)/1.5 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--plum);margin-bottom:16px}
+#gate p.intro{font-size:var(--sm);line-height:1.6;color:var(--ink-mid);margin-bottom:20px}
+#gate input{width:100%;border:1.5px solid var(--rule);border-radius:9px;padding:13px;font:var(--w-body) var(--tx)/1.4 var(--sans);color:var(--ink)}
+#gate input:focus{border-color:var(--plum);outline:none;box-shadow:0 0 0 3px rgba(139,46,107,.16)}
+#gate button{width:100%;margin-top:12px;justify-content:center}
+#gate .note{margin-top:22px;padding-top:18px;border-top:1px solid var(--rule);font:var(--w-body) var(--xs)/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink-soft)}
+#gate .err{margin-top:12px;font-size:var(--sm);color:var(--amber)}
+body.locked{overflow:hidden}
+body.locked main,body.locked header.site-header,body.locked footer.site-footer{display:none}
+
+@media(max-width:960px){
+  .hgrid,.two{grid-template-columns:1fr;gap:28px}
+  .sectors,.figs{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .hero img.shot{order:-1}
+  .foot-top{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:860px){.sec{padding:60px 0}}
+@media(max-width:620px){
+  .steps{grid-template-columns:1fr}
+  .hv{grid-template-columns:1fr;gap:6px}
+  .ethics{padding:24px 22px}
+  .qs,.formslot{padding:24px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
 </head>
-<body>
-<h1>manpowerphilippines.harmonixhr.com</h1>
-<p>Placeholder. Page not yet built.</p>
+<body class="locked">
+
+<!-- ============================================================ THE GATE -->
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="card">
+    <p class="kick">HarmoniXHR and Manpower (Philippines)</p>
+    <h1 id="gateTitle">Cross-border workforce solutions</h1>
+    <p class="intro">This page is a draft build for invited reviewers. Enter the access phrase you were given.</p>
+    <label for="gateInput" class="sm" style="display:block;margin-bottom:7px">Access phrase</label>
+    <input id="gateInput" type="password" autocomplete="off" spellcheck="false">
+    <button class="btn btn-accent" id="gateBtn" type="button">Open page</button>
+    <p class="err" id="gateErr" hidden>That phrase does not match. Try again.</p>
+    <p class="note">Draft build for review and discussion, not for operational use. Access is controlled in the page and is not a security boundary. Do not put confidential commercial terms on this page while it is public.</p>
+  </div>
+</div>
+
+<!-- =========================================================== LOGO ASSET
+     Swap both src values when the supplied assets arrive. Nothing else
+     changes: both marks are height-constrained and width-auto, so equal
+     billing holds at whatever aspect ratio the new files have.
+     ==================================================================== -->
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <div class="cobrand">
+      <div class="cobrand-row">
+        <img src="assets/hxhr-img-global-logo.png" alt="HarmoniXHR" width="267" height="82">
+        <span class="cobrand-rule" aria-hidden="true"></span>
+        <img src="assets/manpower-horizontal.svg" alt="Manpower (Philippines)" width="300" height="56">
+      </div>
+      <p class="cobrand-note">HarmoniXHR and Manpower (Philippines)</p>
+    </div>
+    <a class="header-cta" href="#enquire">Talk about a requirement</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================================================================ HERO -->
+<section class="hero">
+  <div class="wrap hgrid">
+    <div>
+      <p class="eyebrow">Cross-border workforce solutions</p>
+      <h1>Skilled people, where the work is</h1>
+      <p class="lede">Employers in many markets cannot fill roles locally. HarmoniXHR works with Manpower (Philippines) to recruit, prepare and place skilled workers internationally, under lawful land-based deployment.</p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="#enquire">Talk about a requirement</a>
+        <a class="btn btn-ghost" href="#position">How we approach it</a>
+      </div>
+      <p class="hero-note">Land-based deployment. Every engagement begins with whether a lawful authorization route exists for the destination and the role.</p>
+    </div>
+    <img class="shot" src="assets/hero-manpower-philippines.jpg" alt="" width="1983" height="793">
+  </div>
+</section>
+
+<!-- ====================================================== DISAMBIGUATION -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">First, which problem is this</p>
+      <h2>Two things that sound alike and are not</h2>
+      <p class="lede">HarmoniXHR offers both. They solve opposite problems, and getting it right in the first minute saves everyone a wasted conversation.</p>
+    </div>
+    <div class="two">
+      <div class="tw">
+        <p class="kicker">Global Solutions</p>
+        <h3>Nobody moves</h3>
+        <p>You have already found the person. They stay where they are, and what you lack is a legal entity in their country. We issue a compliant local contract and run payroll in their currency.</p>
+        <a href="https://harmonixhr.com/global-solutions/">That is a different page</a>
+      </div>
+      <div class="tw here">
+        <p class="kicker">This page</p>
+        <h3>People relocate</h3>
+        <p>You have roles to fill in a destination country and the people are not there. Everything turns on whether a lawful authorization route exists, and then on preparation. Recruitment runs through Manpower (Philippines).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= SECTORS -->
+<section class="sec tint-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Where people go</p>
+      <h2>Land-based roles, across sectors</h2>
+      <p class="lede">Manpower (Philippines) holds a land-based deployment licence, which covers roles onshore in the destination country. Within that, the range is wide and the constraint is the authorization route rather than the sector.</p>
+    </div>
+    <div class="sectors">
+      <div class="sc"><h3>Healthcare and allied health</h3><p>Clinical and support roles in markets where the shortage is well documented and recognition pathways are established.</p></div>
+      <div class="sc"><h3>Hospitality and services</h3><p>Hotel, food service and customer-facing roles for operators running short of staff locally.</p></div>
+      <div class="sc"><h3>Business and back office</h3><p>Finance, administration, contact and coordination roles across banking, retail, telecom and consumer goods.</p></div>
+      <div class="sc"><h3>Technical and skilled trades</h3><p>Onshore technical roles where credentials transfer and a recognised authorization route exists.</p></div>
+    </div>
+    <div class="lead">
+      <p><b>Land-based only.</b> Philippine deployment is licensed separately for land-based and sea-based work. Manpower (Philippines) operates under a land-based licence, so offshore and shipboard roles sit outside what this partnership handles. We would rather say that at the outset than discover it late.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== ETHICS -->
+<section class="sec" id="position">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Our position</p>
+      <h2>How we decide what we will take on</h2>
+    </div>
+    <div class="ethics">
+      <h3>Adding to supply is defensible. Extracting from it is not.</h3>
+      <p>International recruitment is not neutral. A source country that loses skilled workers faster than it trains them ends up with the shortage it was helping someone else solve. The World Health Organization maintains a code of practice covering this in health care, and the same principle applies more broadly.</p>
+      <p>Our position is that <b>adding to supply is defensible and extracting from it is not.</b> Where capacity does not exist, the answer is to build it rather than draw down someone else's.</p>
+      <p>In practice that means we look at whether a role can be filled without leaving a gap behind it, and we decline engagements where it cannot. It is a slower way to work and it costs us some enquiries.</p>
+    </div>
+    <div class="figs">
+      <div class="fg">
+        <p class="n">74%</p>
+        <p class="l">Employers reporting they cannot find the talent they need</p>
+        <p class="src">ManpowerGroup, published figure</p>
+      </div>
+      <div class="fg">
+        <p class="n">2.19 million</p>
+        <p class="l">Overseas Filipino Workers, 2024</p>
+        <p class="src">Philippine Statistics Authority, December 2025</p>
+      </div>
+      <div class="fg against">
+        <p class="n">Source-country cost</p>
+        <p class="l">Sending countries carry the training cost and lose the capacity, which is the standing argument against international recruitment</p>
+        <p class="src">Stated because it is the objection worth answering</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= PROCESS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How an engagement runs</p>
+      <h2>Four stages, and preparation is the long one</h2>
+    </div>
+    <div class="steps">
+      <div class="st"><p class="n">1</p><h3>Requirement and route</h3><p>What roles, how many, which destination, and whether a lawful authorization route exists for them there.</p></div>
+      <div class="st"><p class="n">2</p><h3>Sourcing and screening</h3><p>Recruitment through Manpower (Philippines), with credential and reference verification before anyone is presented to you.</p></div>
+      <div class="st"><p class="n">3</p><h3>Preparation</h3><p>Documentation, language and role-readiness. This is the stage that decides whether a placement lasts.</p></div>
+      <div class="st"><p class="n">4</p><h3>Deployment and arrival</h3><p>Travel, arrival support and the first weeks in post, coordinated rather than left to the individual.</p></div>
+    </div>
+    <div class="have">
+      <div class="hv"><b>Scale</b><span>Manpower (Philippines) is one of the country's established staffing organisations, with national reach rather than a single-city footprint.</span></div>
+      <div class="hv"><b>Screening</b><span>Credential and reference verification carried out before a candidate reaches you, not after.</span></div>
+      <div class="hv"><b>Preparation</b><span>Documentation, language and role-readiness handled as a stage in its own right, because it is the one that decides whether a placement lasts.</span></div>
+      <div class="hv"><b>Pipeline</b><span>University and college relationships for building capacity rather than drawing on it.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= QUALIFICATION -->
+<section class="sec tint-band" id="enquire">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we would ask you</p>
+      <h2>Destination and route, before anything else</h2>
+      <p class="lede">An engagement either has a lawful authorization route or it does not, and that is knowable early. These are the questions that get to an answer quickly, and the answers travel with your enquiry so nobody asks you twice.</p>
+    </div>
+    <div class="qs">
+      <h3>Six questions, about two minutes</h3>
+      <p class="sub">If the route does not exist, or the engagement would draw people out of a system that cannot spare them, we will tell you.</p>
+      <ul class="qlist">
+        <li><span class="qn">01</span><span>Which country are you hiring into, and under which visa or authorization route?<span class="why">Decides feasibility before anything else. If there is no route, there is no engagement.</span></span></li>
+        <li><span class="qn">02</span><span>Which roles, and how many?<span class="why">Volume changes the model completely, and small volumes are often better served another way.</span></span></li>
+        <li><span class="qn">03</span><span>What credentials or licences must they hold on arrival?<span class="why">Recognition and conversion take longer than most timelines assume.</span></span></li>
+        <li><span class="qn">04</span><span>What is your timeline, and how firm is it?<span class="why">Preparation is the long stage and it does not compress well.</span></span></li>
+        <li><span class="qn">05</span><span>Who handles housing, arrival and the first month?<span class="why">The most common cause of a placement failing in year one.</span></span></li>
+        <li><span class="qn">06</span><span>Have you hired internationally before?<span class="why">Changes how much of the process we carry rather than share.</span></span></li>
+      </ul>
+    </div>
+
+    <!-- ======================================================= FORM ENDPOINT
+         The GoHighLevel embed replaces everything inside .formslot.
+         Nothing outside this block changes. Route value for this page is
+         intended to be "manpowerphilippines" so the enquiry carries which
+         page it arrived through, per the routing rule that the page an
+         enquiry came through determines who receives it.
+         ==================================================================== -->
+    <div class="formslot">
+      <p class="ph">Intake form pending. The GoHighLevel embed goes here, carrying a route value of manpowerphilippines so the enquiry is attributed to this page. Nothing else on the page changes when it is added.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= CTA -->
+<section class="sec dark-band cta">
+  <div class="wrap">
+    <h2>Tell us the destination and the role</h2>
+    <p>We will tell you quickly whether a lawful land-based route exists, what the preparation involves, and how long it realistically takes. If the answer is no, you will hear that early.</p>
+    <div class="btn-row">
+      <a class="btn btn-accent" href="#enquire">Talk about a requirement</a>
+      <a class="btn btn-ghost" href="https://harmonixhr.com/workforce-deployment/">See workforce deployment</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="assets/hxhr-img-global-logo-white.png" alt="HarmoniXHR" width="267" height="82">
+        <p>Human capital solutions for companies of 50 to 1,000. Cross-border workforce solutions in partnership with Manpower (Philippines).</p>
+      </div>
+      <div class="foot-col">
+        <h3>Global Talent</h3>
+        <ul>
+          <li><a href="https://harmonixhr.com/global-solutions/">Global Solutions</a></li>
+          <li><a href="https://harmonixhr.com/workforce-deployment/">Workforce Deployment</a></li>
+          <li><a href="https://harmonixhr.com/education/">Education</a></li>
+          <li><a href="https://harmonixhr.com/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 HarmoniXHR. All rights reserved.</span>
+      <span>Manpower is a registered trademark of its owner and is used here to identify a partner organisation.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------- the gate
+ * Set ACCESS_PHRASE after deploy. Never commit the real value.
+ * Registry entry 164: the access code lives outside the code.
+ * Registry entry 178: this protects the page, not the files behind it.
+ */
+(function () {
+  "use strict";
+  var ACCESS_PHRASE = "PJamm-2026";
+  var KEY = "mp-hxhr-gate";
+  var gate = document.getElementById("gate");
+  var input = document.getElementById("gateInput");
+  var btn = document.getElementById("gateBtn");
+  var err = document.getElementById("gateErr");
+
+  function unlock() {
+    document.body.classList.remove("locked");
+    gate.style.display = "none";
+  }
+  function attempt() {
+    if (input.value.trim() === ACCESS_PHRASE) {
+      try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+      unlock();
+    } else {
+      err.hidden = false;
+      input.value = "";
+      input.focus();
+    }
+  }
+  try {
+    if (sessionStorage.getItem(KEY) === "1") { unlock(); }
+  } catch (e) {}
+  btn.addEventListener("click", attempt);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); attempt(); }
+  });
+  input.focus();
+})();
+</script>
+
 </body>
 </html>
