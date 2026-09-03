@@ -127,32 +127,90 @@ p{margin:0}
  */
 .cobrand{display:flex;flex-direction:column;gap:6px}
 .cobrand-row{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
-.cobrand-row img{height:54px;width:auto;display:block}
+.cobrand-row img{height:38px;width:auto;display:block}
 .cobrand-rule{width:1px;align-self:stretch;background:var(--rule);flex:0 0 1px}
 .cobrand-note{font-size:var(--xs);color:var(--ink-soft);letter-spacing:.04em}
 @media(max-width:1000px){
   .cobrand-row{gap:16px}
-  .cobrand-row img{height:42px}
+  .cobrand-row img{height:32px}
 }
 @media(max-width:520px){
   .cobrand-row{gap:12px}
-  .cobrand-row img{height:34px}
+  .cobrand-row img{height:28px}
 }
 
 /* ---------------------------------------------------------------- header */
 header.site-header{position:sticky;top:0;z-index:800;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule)}
-.header-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:92px;padding-block:14px;flex-wrap:wrap}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px;padding-block:12px;flex-wrap:wrap}
 .header-cta{display:inline-flex;align-items:center;background:var(--plum);color:#fff;text-decoration:none;font:var(--w-mid) var(--tx)/1 var(--sans);padding:13px 20px;border-radius:10px;white-space:nowrap}
 .header-cta:hover{background:var(--plum-dark)}
-@media(max-width:1000px){.header-row{min-height:76px}}
+@media(max-width:1000px){.header-row{min-height:64px}}
 
-/* ------------------------------------------------------------------ hero */
-.hero{background:linear-gradient(158deg,var(--plum-tint) 0%,#FDF7FA 48%,#FFFFFF 100%);padding:70px 0 76px}
-.hgrid{display:grid;grid-template-columns:1.06fr .94fr;gap:50px;align-items:center}
-.hero h1{margin-top:14px}
-.hero .lede{margin-top:20px;max-width:58ch}
-.hero img.shot{width:100%;border-radius:18px;box-shadow:var(--shadow-lift);display:block}
-.hero-note{margin-top:16px;font-size:var(--sm);color:var(--ink-soft)}
+/* --------------------------------------------------------- hero banner
+ * Full-width banner ported from the hxhr-base theme's hero.css: photograph,
+ * legibility scrim, three drifting light layers. Plum variant rather than
+ * one of the six theme verticals, since this page carries its own accent.
+ */
+.hero-banner{
+  position:relative;width:100vw;margin-left:calc(50% - 50vw);
+  min-height:clamp(420px,46vw,560px);display:flex;align-items:center;
+  overflow:hidden;background:var(--navy-deep);isolation:isolate;
+}
+.hero-banner::before{
+  content:"";position:absolute;inset:0;
+  background-image:var(--hero-img);background-size:cover;
+  background-position:var(--hero-pos,center);
+  transform:scale(1.06);animation:heroBreathe 26s ease-in-out infinite alternate;z-index:0;
+}
+.hero-banner::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(100deg,
+    rgba(28,10,24,.95) 0%, rgba(28,10,24,.92) 34%, rgba(28,10,24,.76) 46%,
+    rgba(28,10,24,.40) 60%, rgba(28,10,24,.18) 80%, rgba(28,10,24,.14) 100%);
+}
+.hero-atmos{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.hero-layer{position:absolute;inset:0;will-change:transform}
+.hero-layer .puff{
+  position:absolute;width:26%;height:34%;border-radius:999px;
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.30),rgba(255,255,255,0) 68%);
+  filter:blur(18px);
+}
+.hero-layer.back{animation:heroDriftBack 52s linear infinite;opacity:.34}
+.hero-layer.mid{animation:heroDriftMid 38s linear infinite;opacity:.26}
+.hero-layer.front{animation:heroDriftFront 27s linear infinite;opacity:.18}
+.hero-layer.back .puff{filter:blur(26px);transform:scale(1.25)}
+.hero-layer.front .puff{filter:blur(12px);transform:scale(.7)}
+.hero-glow{
+  position:absolute;left:52%;top:8%;width:44%;height:64%;z-index:2;pointer-events:none;
+  background:radial-gradient(circle at 55% 40%,rgba(255,246,224,.16),transparent 64%);
+  animation:heroBreatheGlow 9s ease-in-out infinite;
+}
+@keyframes heroDriftBack{from{transform:translate3d(0,0,0)}to{transform:translate3d(-44%,0,0)}}
+@keyframes heroDriftMid{from{transform:translate3d(0,0,0)}to{transform:translate3d(-60%,0,0)}}
+@keyframes heroDriftFront{from{transform:translate3d(0,0,0)}to{transform:translate3d(-76%,0,0)}}
+@keyframes heroBreatheGlow{0%,100%{opacity:.42}50%{opacity:.82}}
+@keyframes heroBreathe{from{transform:scale(1.06)}to{transform:scale(1.12)}}
+
+.hero-inner{position:relative;z-index:3;padding-block:clamp(56px,7vw,84px)}
+.hero-banner .hero-inner .eyebrow{color:#E7B8D6}
+.hero-banner .hero-inner h1{color:#fff;margin-top:14px;max-width:17ch;text-shadow:0 2px 18px rgba(4,14,32,.45)}
+.hero-banner .hero-inner .lede{color:#EDDCE7;margin-top:20px;max-width:44ch}
+.hero-banner .hero-inner .hero-note{margin-top:20px;font-size:var(--sm);color:#CDB2C4;max-width:44ch;line-height:1.6}
+.hero-banner .hero-inner .btn-row{margin-top:30px}
+/* background must be reset: base .btn-ghost is white, which would be
+   invisible on the scrim. */
+.hero-banner .hero-inner .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.46)}
+.hero-banner .hero-inner .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.10);color:#fff}
+@media(max-width:760px){
+  .hero-banner{min-height:auto}
+  .hero-banner::after{background:linear-gradient(178deg,rgba(28,10,24,.86) 0%,rgba(28,10,24,.90) 60%,rgba(28,10,24,.95) 100%)}
+  .hero-banner .hero-inner h1,.hero-banner .hero-inner .lede{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-banner::before{animation:none;transform:none}
+  .hero-layer,.hero-glow{animation:none}
+  .hero-atmos{opacity:.5}
+}
 
 /* --------------------------------------------------------------- sectors */
 .sectors{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px}
@@ -249,10 +307,9 @@ body.locked{overflow:hidden}
 body.locked main,body.locked header.site-header,body.locked footer.site-footer{display:none}
 
 @media(max-width:960px){
-  .hgrid,.two{grid-template-columns:1fr;gap:28px}
+  .two{grid-template-columns:1fr;gap:28px}
   .sectors,.figs{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr)}
-  .hero img.shot{order:-1}
   .foot-top{grid-template-columns:1fr;gap:32px}
 }
 @media(max-width:860px){.sec{padding:60px 0}}
@@ -306,19 +363,22 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
 <main>
 
 <!-- ================================================================ HERO -->
-<section class="hero">
-  <div class="wrap hgrid">
-    <div>
-      <p class="eyebrow">Cross-border workforce solutions</p>
-      <h1>Skilled people, where the work is</h1>
-      <p class="lede">Employers in many markets cannot fill roles locally. HarmoniXHR works with Manpower (Philippines) to recruit, prepare and place skilled workers internationally, under lawful land-based deployment.</p>
-      <div class="btn-row">
-        <a class="btn btn-accent" href="#enquire">Talk about a requirement</a>
-        <a class="btn btn-ghost" href="#position">How we approach it</a>
-      </div>
-      <p class="hero-note">Land-based deployment. Every engagement begins with whether a lawful authorization route exists for the destination and the role.</p>
+<section class="hero-banner" style="--hero-img:url(assets/hero-manpower-philippines.jpg);--hero-pos:center right">
+  <div class="hero-atmos" aria-hidden="true">
+    <div class="hero-layer back"><span class="puff" style="left:4%;top:18%"></span><span class="puff" style="left:38%;top:52%"></span><span class="puff" style="left:72%;top:12%"></span></div>
+    <div class="hero-layer mid"><span class="puff" style="left:18%;top:38%"></span><span class="puff" style="left:56%;top:8%"></span><span class="puff" style="left:88%;top:46%"></span></div>
+    <div class="hero-layer front"><span class="puff" style="left:10%;top:62%"></span><span class="puff" style="left:48%;top:26%"></span><span class="puff" style="left:80%;top:66%"></span></div>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Cross-border workforce solutions</p>
+    <h1>Skilled people, where the work is</h1>
+    <p class="lede">Employers in many markets cannot fill roles locally. HarmoniXHR works with Manpower (Philippines) to recruit, prepare and place skilled workers internationally, under lawful land-based deployment.</p>
+    <div class="btn-row">
+      <a class="btn btn-accent" href="#enquire">Talk about a requirement</a>
+      <a class="btn btn-ghost" href="#position">How we approach it</a>
     </div>
-    <img class="shot" src="assets/hero-manpower-philippines.jpg" alt="" width="1983" height="793">
+    <p class="hero-note">Land-based deployment. Every engagement begins with whether a lawful authorization route exists for the destination and the role.</p>
   </div>
 </section>
 
