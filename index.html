@@ -120,23 +120,35 @@ p{margin:0}
 @media(max-width:620px){.btn{width:100%;justify-content:center}}
 
 /* ---------------------------------------------------------- co-brand lock
- * Equal billing: same rendered height, side by side, neither above the
- * other. Both marks are height-constrained and width-auto, so the rule is
- * checkable in CSS rather than judged by eye. "(Philippines)" sits under
- * the pair, not under one mark, so the row stays a single horizontal unit.
+ * Manpower (Philippines) leads, HarmoniXHR follows. "(Philippines)" sits
+ * directly beneath the Manpower wordmark, not beneath the pair.
+ *
+ * That placement is a ManpowerGroup head office requirement, conveyed by
+ * Manpower (Philippines) on 2026-09-03. It supersedes the shared-caption
+ * layout recorded in the 2026-09-01 Chat Decision Log section 4.3, which
+ * put the parenthetical under the pair to keep the row a single unit. Do
+ * not revert it on reading that log: the partner's requirement governs.
+ *
+ * The two marks are deliberately NOT the same height. HXHR is a globe plus
+ * text at 3.26:1; Manpower is bars plus a wordmark at 5.31:1. Matched on
+ * box height the Manpower letters render visibly larger, because more of
+ * its box is type. They are matched on optical weight instead, through two
+ * variables, so the balance is one number to tune rather than six edits.
  */
-.cobrand{display:flex;flex-direction:column;gap:6px}
+.cobrand{--logo-hxhr:38px;--logo-mp:32px;display:flex}
 .cobrand-row{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
-.cobrand-row img{height:38px;width:auto;display:block}
+.cobrand-mp{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.cobrand-mp img{height:var(--logo-mp);width:auto;display:block}
+.cobrand-qual{font-size:var(--xs);line-height:1;color:var(--ink-soft);letter-spacing:.04em;white-space:nowrap}
+.cobrand-hxhr{height:var(--logo-hxhr);width:auto;display:block}
 .cobrand-rule{width:1px;align-self:stretch;background:var(--rule);flex:0 0 1px}
-.cobrand-note{font-size:var(--xs);color:var(--ink-soft);letter-spacing:.04em}
 @media(max-width:1000px){
+  .cobrand{--logo-hxhr:32px;--logo-mp:27px}
   .cobrand-row{gap:16px}
-  .cobrand-row img{height:32px}
 }
 @media(max-width:520px){
+  .cobrand{--logo-hxhr:28px;--logo-mp:24px}
   .cobrand-row{gap:12px}
-  .cobrand-row img{height:28px}
 }
 
 /* ---------------------------------------------------------------- header */
@@ -313,6 +325,9 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
   .foot-top{grid-template-columns:1fr;gap:32px}
 }
 @media(max-width:860px){.sec{padding:60px 0}}
+.partner-sites{padding:56px 0;border-top:1px solid var(--rule)}
+.partner-sites .btn-row{margin-top:18px}
+.tw-note{margin-top:14px;font-size:var(--sm);color:var(--ink-soft);font-style:italic}
 @media(max-width:620px){
   .steps{grid-template-columns:1fr}
   .hv{grid-template-columns:1fr;gap:6px}
@@ -341,20 +356,25 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
 </div>
 
 <!-- =========================================================== LOGO ASSET
-     Swap both src values when the supplied assets arrive. Nothing else
-     changes: both marks are height-constrained and width-auto, so equal
-     billing holds at whatever aspect ratio the new files have.
+     Swap both src values when the supplied assets arrive. Both marks are
+     height-constrained and width-auto, so a new file at a different aspect
+     ratio will still lay out; the optical balance may need one adjustment
+     to --logo-mp or --logo-hxhr afterwards.
+     The SVG width and height attributes match its viewBox exactly, so the
+     space reserved before it loads is correct and the page does not shift.
      ==================================================================== -->
 
 <header class="site-header">
   <div class="wrap header-row">
     <div class="cobrand">
       <div class="cobrand-row">
-        <img src="assets/hxhr-img-global-logo.png" alt="HarmoniXHR" width="267" height="82">
+        <div class="cobrand-mp">
+          <img src="assets/manpower-horizontal.svg" alt="Manpower" width="336" height="63">
+          <span class="cobrand-qual">(Philippines)</span>
+        </div>
         <span class="cobrand-rule" aria-hidden="true"></span>
-        <img src="assets/manpower-horizontal.svg" alt="Manpower (Philippines)" width="300" height="56">
+        <img class="cobrand-hxhr" src="assets/hxhr-img-global-logo.png" alt="HarmoniXHR" width="267" height="82">
       </div>
-      <p class="cobrand-note">HarmoniXHR and Manpower (Philippines)</p>
     </div>
     <a class="header-cta" href="#enquire">Talk about a requirement</a>
   </div>
@@ -395,7 +415,7 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
         <p class="kicker">Global Solutions</p>
         <h3>Nobody moves</h3>
         <p>You have already found the person. They stay where they are, and what you lack is a legal entity in their country. We issue a compliant local contract and run payroll in their currency.</p>
-        <a href="https://harmonixhr.com/global-solutions/">That is a different page</a>
+        <p class="tw-note">That is a separate service and not what this page covers.</p>
       </div>
       <div class="tw here">
         <p class="kicker">This page</p>
@@ -418,7 +438,7 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
       <div class="sc"><h3>Healthcare and allied health</h3><p>Clinical and support roles in markets where the shortage is well documented and recognition pathways are established.</p></div>
       <div class="sc"><h3>Hospitality and services</h3><p>Hotel, food service and customer-facing roles for operators running short of staff locally.</p></div>
       <div class="sc"><h3>Business and back office</h3><p>Finance, administration, contact and coordination roles across banking, retail, telecom and consumer goods.</p></div>
-      <div class="sc"><h3>Technical and skilled trades</h3><p>Onshore technical roles where credentials transfer and a recognised authorization route exists.</p></div>
+      <div class="sc"><h3>Technical and skilled trades</h3><p>Onshore technical roles where credentials transfer and a recognized authorization route exists.</p></div>
     </div>
     <div class="lead">
       <p><b>Land-based only.</b> Philippine deployment is licensed separately for land-based and sea-based work. Manpower (Philippines) operates under a land-based licence, so offshore and shipboard roles sit outside what this partnership handles. We would rather say that at the outset than discover it late.</p>
@@ -473,7 +493,7 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
       <div class="st"><p class="n">4</p><h3>Deployment and arrival</h3><p>Travel, arrival support and the first weeks in post, coordinated rather than left to the individual.</p></div>
     </div>
     <div class="have">
-      <div class="hv"><b>Scale</b><span>Manpower (Philippines) is one of the country's established staffing organisations, with national reach rather than a single-city footprint.</span></div>
+      <div class="hv"><b>Scale</b><span>Manpower (Philippines) is one of the country's established staffing organizations, with national reach rather than a single-city footprint.</span></div>
       <div class="hv"><b>Screening</b><span>Credential and reference verification carried out before a candidate reaches you, not after.</span></div>
       <div class="hv"><b>Preparation</b><span>Documentation, language and role-readiness handled as a stage in its own right, because it is the one that decides whether a placement lasts.</span></div>
       <div class="hv"><b>Pipeline</b><span>University and college relationships for building capacity rather than drawing on it.</span></div>
@@ -527,6 +547,21 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
   </div>
 </section>
 
+<!-- ====================================================== PARTNER SITES
+     Deliberately placed after the call to action rather than inside the
+     page body. An earlier draft sent the reader off-site mid-read from the
+     disambiguation card; a reader should reach the end of the page first.
+     ==================================================================== -->
+<section class="sec partner-sites">
+  <div class="wrap">
+    <p class="eyebrow">The two organizations behind this page</p>
+    <div class="btn-row">
+      <a class="btn btn-ghost" href="https://manpower.com.ph" rel="noopener">Manpower (Philippines)</a>
+      <a class="btn btn-ghost" href="https://harmonixhr.com/">HarmoniXHR</a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="site-footer">
@@ -548,7 +583,7 @@ body.locked main,body.locked header.site-header,body.locked footer.site-footer{d
     </div>
     <div class="foot-bottom">
       <span>&copy; 2026 HarmoniXHR. All rights reserved.</span>
-      <span>Manpower is a registered trademark of its owner and is used here to identify a partner organisation.</span>
+      <span>Manpower is a registered trademark of its owner and is used here to identify a partner organization.</span>
     </div>
   </div>
 </footer>
